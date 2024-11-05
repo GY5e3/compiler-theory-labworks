@@ -18,7 +18,25 @@ int main(int argc, char const *argv[])
     std::cout << "Before determination:\n" + nfa.ToString();
     std::cout << "After determination:\n" + dfa.ToString();
 
-    //your tests
+    std::string data;
+    while (true)
+    {
+        try
+        {
+            getline(std::cin, data);
+            if(dfa.Accept(data)) {
+                std::cout << "Success!" << std::endl;
+            }
+            else {
+                std::cout << "Fail!" << std::endl;
+            }
+        }
+        catch (std::invalid_argument e)
+        {
+            std::cout << e.what() << std::endl;
+        }
+    }
+
 
     return 0;
 }

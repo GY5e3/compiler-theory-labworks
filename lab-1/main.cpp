@@ -7,16 +7,22 @@ int main(int argc, char const *argv[])
     std::string data;
     while (true)
     {
-        getline(std::cin, data);
-        Tokenizer tokenizer;
-        std::vector<Token> tokens = tokenizer(data);
+        try
+        {
+            getline(std::cin, data);
+            Tokenizer tokenizer;
+            std::vector<Token> tokens = tokenizer(data);
 
-        ShuntingYard shuntingYard;
-        std::vector<Token> rpn = shuntingYard(tokens);
+            ShuntingYard shuntingYard;
+            std::vector<Token> rpn = shuntingYard(tokens);
 
-        EvaluateRPN ev;
-        std::cout << ev(rpn) << std::endl;
-
+            EvaluateRPN ev;
+            std::cout << ev(rpn) << std::endl;
+        }
+        catch (std::invalid_argument e)
+        {
+            std::cout << e.what() << std::endl;
+        }
     }
 
     return 0;
