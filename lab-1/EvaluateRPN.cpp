@@ -25,8 +25,6 @@ double EvaluateRPN::operator()(const std::vector<Token> &tokens)
 
         const std::string str = token.GetToken();
 
-        // std::cout << "cur: " << str << std::endl;
-
         switch (token.GetTokenType())
         {
         case TokenType::Integer:
@@ -90,5 +88,7 @@ double EvaluateRPN::operator()(const std::vector<Token> &tokens)
     }
     if(stack.size() > 1)
         throw std::invalid_argument("An extra argument in the function");
+    if(stack.size() == 0)
+        throw std::invalid_argument("Incorrect input");
     return stack.top();
 }

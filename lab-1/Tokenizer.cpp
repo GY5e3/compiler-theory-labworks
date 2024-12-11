@@ -28,6 +28,9 @@ std::vector<Token> Tokenizer::operator()(const std::string &data)
         bool isSep = c == ',';
         bool isOperator = operators.find(c) != operators.npos;
 
+        if(!isDigit && !isLetter && !isParanth && !isPoint && !isSep && !isOperator)
+            throw std::invalid_argument("Incorrect symbol");
+
         switch (currentState)
         {
         case State::StartState:

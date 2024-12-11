@@ -41,11 +41,8 @@ namespace utils
             {
                 std::set<std::string> tempSet;
                 for (const std::string &state : currentStates)
-                {
-                    std::unordered_map<char, std::unordered_set<std::string>> tempMap = nfa.GetTransitions()[state];
                     tempSet.insert(nfa.GetTransitions()[state][symbol].begin(),
                                    nfa.GetTransitions()[state][symbol].end());
-                }
                 if (tempSet.empty())
                     continue;
                 std::string tempState = SetToString(tempSet);
